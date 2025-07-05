@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gesture Controlled Dino Game</title>
+    <style>
+      body { margin: 0; overflow: hidden; }
+      iframe { width: 100vw; height: 100vh; border: none; }
+    </style>
+  </head>
+  <body>
+    <iframe id="dinoGame" src="https://wayou.github.io/t-rex-runner/"></iframe>
+
+    <script>
+      // Wait for the iframe to load, then auto-start the game
+      window.onload = function () {
+        const iframe = document.getElementById("dinoGame");
+
+        iframe.onload = function () {
+          const gameWindow = iframe.contentWindow;
+          setTimeout(() => {
+            // Auto-start the game by sending a space key event
+            const event = new KeyboardEvent('keydown', { keyCode: 32, which: 32 });
+            gameWindow.document.dispatchEvent(event);
+          }, 1000);
+        };
+      };
+    </script>
+  </body>
+</html>
